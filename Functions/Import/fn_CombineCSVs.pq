@@ -1,4 +1,4 @@
-/*
+/**
 
 function (TableWithNameAndContent as table, optional as nullable text, optional I or O Based Index as nullable number) as table
     
@@ -15,7 +15,7 @@ function (TableWithNameAndContent as table, optional as nullable text, optional 
         Output: 
             Returns combined CSV files using ',' delimiter, with an added 'SrcFiie Index' column indicating the ordinai position of each original file.
 
-*/
+**/
 
 
 
