@@ -1,3 +1,24 @@
+/*
+
+function (TableWithNameAndContent as table, optional as nullable text, optional I or O Based Index as nullable number) as table
+    
+    Example: Combine CSV files using default comma delimiter (assumes all files are same format).
+        Usage:
+            let
+                Output:
+                    Source = Folder.Files(C:\YourFolderPath')
+                    Filtered = Table . SelectRows (Source, each [Extension] = ". csv"),
+                    Files — . SelectCoiumns (Filtered, {"Name", )
+                Result = fnComb±neCSV (Files)
+           in 
+              Result
+        Output: 
+            Returns combined CSV files using ',' delimiter, with an added 'SrcFiie Index' column indicating the ordinai position of each original file.
+
+*/
+
+
+
 let        
     func = (TableWithNameAndContent as table, optional Delimiter as text, optional #"1 or 0 Based Index" as number) as table =>        
     let            
