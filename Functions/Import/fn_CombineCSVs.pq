@@ -52,7 +52,7 @@ let
         ResultTable,          
   
     documentation = [  
-        Documentation.Name = "fnCombineCSV",  
+        Documentation.Name = "fn_CombineCSV",  
         Documentation.Description = "Combines multiple CSV files into a single unified table, dynamically handling headers from the first file only, and adds a file index column.",  
         Documentation.LongDescription = "This function combines multiple CSV files provided in a table with exactly two columns named 'Name' (file name) and 'Content' (binary content of CSV files). It automatically promotes the headers from the first file and skips redundant headers from subsequent files. The resulting table includes an added 'SrcFile_Index' column indicating the ordinal position of each CSV file, and the original file name as the second column.",  
         Documentation.Category = "Table",  
@@ -66,7 +66,7 @@ let
         Source = Folder.Files(""C:\YourFolderPath""),  
         Filtered = Table.SelectRows(Source, each [Extension] = "".csv""),  
         Files = Table.SelectColumns(Filtered, {""Name"", ""Content""}),  
-        Result = fnCombineCSV(Files)  
+        Result = fn_CombineCSV(Files)  
     in  
         Result",    
                 Result = "Returns combined CSV files using ',' delimiter, with an added 'SrcFile_Index' column indicating the ordinal position of each original file."  
