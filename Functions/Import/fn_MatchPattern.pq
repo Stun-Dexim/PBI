@@ -1,0 +1,17 @@
+//Pattern table example  = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("lZLdisMgEIVfRQJ715coXVp6tdB0r0oubJwEIVF31Dx/dUy7aaIseyWcc775kbndqn3r5MQdCLbvEWAE5dhHtXvpVbMLoV+L1fE5amS17BV3HsESEHTBuqQnyBjUEx/YBX482LnsSqTkCRRgZoaMvsrX3hiNTqqeferWZ8hMgmqcxyiHwFfXDVLBO190ib1AX5g46xBT8ylonVRh9wnQSq3St231RR5BxPYig6wtor6NoN7L+EorTfP/Yf6Y5Qo4hkrbT8oZRBypMX+eCEILMpSPTMF6PzScD836+yidS2TZzcPc2nDYBfZpJtQ7zVJkji8Fihy4amEYwqbzvcfYRqya5gE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Pattern = _t, #"Task Type" = _t])
+
+//Usage example:  = Table.AddColumn(#"Expanded ActivityHistories.CreatedBy", "Task type", each fn_MatchPattern([ActivityHistories.Description], #"Pattern Table"))
+
+
+let
+    MatchTaskType = (FieldToMatchAgainst as text, patternTable as table) as nullable text =>
+        let
+            matchedRow = Table.FirstN(
+                Table.SelectRows(patternTable, each Text.StartsWith(FieldToMatchAgainst, Text.BeforeDelimiter([Pattern], "%"))),
+                1
+            ),
+            taskType = if Table.IsEmpty(matchedRow) then null else matchedRow{0}[Task Type]
+        in
+            taskType
+in
+    MatchTaskType
